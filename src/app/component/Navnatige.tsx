@@ -43,8 +43,8 @@ const NavBar = () => {
         filter: {
           duration: 0.5,
           repeat: Infinity,
-          repeatType: "loop",
-          ease: "easeInOut",
+          repeatType: "loop" as const,
+          ease: "easeInOut" as const,
         },
       },
     },
@@ -59,12 +59,12 @@ const NavBar = () => {
         filter: {
           duration: 1,
           repeat: Infinity,
-          repeatType: "loop",
-          ease: "easeInOut",
+          repeatType: "loop" as const,
+          ease: "easeInOut" as const,
         },
         scale: {
           duration: 1,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
         },
       },
     },
@@ -73,7 +73,7 @@ const NavBar = () => {
       filter: "drop-shadow(0 0 15px #39ff14) drop-shadow(0 0 20px #39ff14)",
       transition: {
         duration: 0.2,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
