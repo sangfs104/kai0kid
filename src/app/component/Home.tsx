@@ -122,9 +122,8 @@ const HackerSection = () => {
             <span className="text-green-300">$ </span>
             <span className="text-white">{command}</span>
             <span
-              className={`text-green-400 ${
-                showCursor ? "opacity-100" : "opacity-0"
-              }`}
+              className={`text-green-400 ${showCursor ? "opacity-100" : "opacity-0"
+                }`}
             >
               |
             </span>
@@ -138,8 +137,7 @@ const HackerSection = () => {
         </h2>
 
         <p className="text-lg sm:text-xl mb-8 text-green-300 max-w-2xl mx-auto">
-          Bảo vệ doanh nghiệp của bạn khỏi các mối đe dọa và tấn công mạng với
-          sự tự tin.
+          Làm cho vuiii!
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
