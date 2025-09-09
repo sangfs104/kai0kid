@@ -1,5 +1,5 @@
 // "use client";
-// import React, { useState, useEffect, useRef } from "react";
+// import React, { useState, useEffect } from "react";
 // import {
 //   Terminal,
 //   Github,
@@ -10,10 +10,10 @@
 //   Clock,
 //   ExternalLink,
 // } from "lucide-react";
-// import Image from "next/image"; // Import next/image
+// import Image from "next/image";
 
 // const MatrixRain = () => {
-//   const canvasRef = useRef<HTMLCanvasElement>(null);
+//   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
 //   useEffect(() => {
 //     const canvas = canvasRef.current!;
@@ -292,7 +292,7 @@
 //                   <span className="bg-purple-600/30 px-3 py-1 rounded-full text-sm">
 //                     Example
 //                   </span>
-//                   <span className="bg-blue-600/30 px-3 py-1 rounded-full text-sm">
+//                   <span className="bg-blue-600/耍 px-3 py-1 rounded-full text-sm">
 //                     Video
 //                   </span>
 //                 </div>
@@ -308,7 +308,7 @@
 //                   <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
 //                     <BookOpen size={20} />
 //                   </div>
-//                   Yukina
+//                   Lê Bá Sang
 //                 </div>
 //                 <div className="hidden md:flex items-center gap-8">
 //                   <a
@@ -417,11 +417,16 @@
 // export default function HackerAnimeProfile() {
 //   const [currentSection, setCurrentSection] = useState(0);
 //   const [scrollY, setScrollY] = useState(0);
+//   const [scrollHeight, setScrollHeight] = useState(0);
 
 //   useEffect(() => {
 //     const handleScroll = () => {
 //       const scrollPosition = window.scrollY;
 //       setScrollY(scrollPosition);
+
+//       // Calculate total scrollable height
+//       const totalHeight = document.body.scrollHeight - window.innerHeight;
+//       setScrollHeight(totalHeight);
 
 //       if (scrollPosition > window.innerHeight * 0.5) {
 //         setCurrentSection(1);
@@ -433,6 +438,10 @@
 //     window.addEventListener("scroll", handleScroll);
 //     return () => window.removeEventListener("scroll", handleScroll);
 //   }, []);
+
+//   // Calculate scroll percentage
+//   const scrollPercentage =
+//     scrollHeight > 0 ? Math.min((scrollY / scrollHeight) * 100, 100) : 0;
 
 //   return (
 //     <div className="relative">
@@ -458,11 +467,7 @@
 //           <div
 //             className="bg-gradient-to-t from-green-400 to-purple-400 rounded-full transition-all duration-300"
 //             style={{
-//               height: `${Math.min(
-//                 (scrollY / (document.body.scrollHeight - window.innerHeight)) *
-//                   100,
-//                 100
-//               )}%`,
+//               height: `${scrollPercentage}%`,
 //             }}
 //           ></div>
 //         </div>
@@ -484,39 +489,48 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+// Thành phần MatrixRain tạo hiệu ứng mưa mã
 const MatrixRain = () => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d");
-
-    if (!ctx) {
-      console.error("Failed to get 2D context");
+    const canvas = canvasRef.current;
+    if (!canvas) {
+      console.error("Phần tử canvas không tồn tại");
       return;
     }
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      console.error("Không thể lấy ngữ cảnh 2D");
+      return;
+    }
+
+    // Hàm cập nhật kích thước canvas
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Tái khởi tạo các giọt mưa khi thay đổi kích thước
+      const fontSize = 14;
+      const columns = Math.floor(canvas.width / fontSize);
+      const drops: number[] = Array(columns).fill(1);
+      return drops;
+    };
 
     const chars =
       "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()";
     const charArray = chars.split("");
-
     const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops: number[] = [];
+    let drops = resizeCanvas(); // Khởi tạo drops ban đầu
 
-    for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
-    }
-
+    // Vẽ hiệu ứng mưa mã
     const draw = () => {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = "#00FF41";
-      ctx.font = fontSize + "px monospace";
+      ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const text = charArray[Math.floor(Math.random() * charArray.length)];
@@ -531,12 +545,23 @@ const MatrixRain = () => {
 
     const interval = setInterval(draw, 35);
 
-    return () => clearInterval(interval);
+    // Xử lý sự kiện thay đổi kích thước cửa sổ
+    const handleResize = () => {
+      drops = resizeCanvas(); // Cập nhật drops khi thay đổi kích thước
+    };
+    window.addEventListener("resize", handleResize);
+
+    // Dọn dẹp khi component unmount
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />;
 };
 
+// Thành phần HackerSection hiển thị giao diện hacker
 const HackerSection = () => {
   const [command, setCommand] = useState("");
   const [showCursor, setShowCursor] = useState(true);
@@ -626,17 +651,18 @@ const HackerSection = () => {
         </h2>
 
         <p className="text-xl mb-8 text-green-300 max-w-3xl mx-auto">
-          Protect Your Business from Cyber Threats and Attacks with Confidence.
+          Bảo vệ doanh nghiệp của bạn khỏi các mối đe dọa và tấn công mạng với
+          sự tự tin.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-green-400 text-black px-8 py-3 font-mono font-bold hover:bg-green-300 transition-all duration-300 flex items-center gap-2">
             <Terminal size={20} />
-            INITIATE CONTACT
+            KHỞI TẠO LIÊN HỆ
           </button>
           <button className="border border-green-400 text-green-400 px-8 py-3 font-mono font-bold hover:bg-green-400 hover:text-black transition-all duration-300 flex items-center gap-2">
             <Code size={20} />
-            PRICING PLAN
+            KẾ HOẠCH GIÁ
           </button>
         </div>
       </div>
@@ -671,37 +697,37 @@ const HackerSection = () => {
   );
 };
 
+// Thành phần BlogSection hiển thị danh sách bài viết
 const BlogSection = () => {
   const posts = [
     {
-      title: "Markdown Tutorial",
+      title: "Hướng dẫn Markdown",
       date: "01-20-2025",
-      category: "Examples",
+      category: "Ví dụ",
       tags: ["Markdown", "Blogging"],
-      description: "A simple example of a Markdown blog post.",
+      description: "Một ví dụ đơn giản về bài đăng blog Markdown.",
       words: 1700,
       minutes: 9,
       image:
         "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop",
     },
     {
-      title: "Markdown Example",
+      title: "Ví dụ Markdown",
       date: "10-01-2023",
-      category: "Examples",
+      category: "Ví dụ",
       tags: ["Markdown", "Blogging"],
-      description: "A simple example of a Markdown blog post.",
+      description: "Một ví dụ đơn giản về bài đăng blog Markdown.",
       words: 438,
       minutes: 2,
       image:
         "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop",
     },
     {
-      title: "Include Video in the Posts",
+      title: "Chèn video vào bài đăng",
       date: "08-01-2022",
-      category: "Examples",
-      tags: ["Example", "Video"],
-      description:
-        "This post demonstrates how to include embedded video in a blog post.",
+      category: "Ví dụ",
+      tags: ["Ví dụ", "Video"],
+      description: "Bài đăng này hướng dẫn cách chèn video nhúng vào bài blog.",
       words: 650,
       minutes: 3,
       image:
@@ -720,7 +746,7 @@ const BlogSection = () => {
                 <div className="w-32 h-32 mx-auto mb-4 rounded-2xl overflow-hidden">
                   <Image
                     src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=200&fit=crop&crop=face"
-                    alt="Profile"
+                    alt="Hồ sơ"
                     width={200}
                     height={200}
                     className="w-full h-full object-cover"
@@ -746,11 +772,11 @@ const BlogSection = () => {
 
               <div className="mb-8">
                 <h3 className="text-xl font-bold mb-4 text-purple-300">
-                  Categories
+                  Danh mục
                 </h3>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center p-2 rounded hover:bg-white/10 transition-all">
-                    <span>Examples</span>
+                    <span>Ví dụ</span>
                     <span className="bg-purple-500 text-xs px-2 py-1 rounded-full">
                       3
                     </span>
@@ -759,12 +785,12 @@ const BlogSection = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold mb-4 text-purple-300">Tags</h3>
+                <h3 className="text-xl font-bold mb-4 text-purple-300">Thẻ</h3>
                 <div className="flex flex-wrap gap-2">
                   <span className="bg-purple-600/30 px-3 py-1 rounded-full text-sm">
-                    Example
+                    Ví dụ
                   </span>
-                  <span className="bg-blue-600/耍 px-3 py-1 rounded-full text-sm">
+                  <span className="bg-blue-600/30 px-3 py-1 rounded-full text-sm">
                     Video
                   </span>
                 </div>
@@ -772,7 +798,7 @@ const BlogSection = () => {
             </div>
           </div>
 
-          {/* Main Content */}
+          {/* Nội dung chính */}
           <div className="lg:w-2/3">
             <nav className="mb-12">
               <div className="flex justify-between items-center">
@@ -787,19 +813,19 @@ const BlogSection = () => {
                     href="#"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
-                    Home
+                    Trang chủ
                   </a>
                   <a
                     href="#"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
-                    Archive
+                    Lưu trữ
                   </a>
                   <a
                     href="#"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
-                    About
+                    Giới thiệu
                   </a>
                   <a
                     href="#"
@@ -831,7 +857,7 @@ const BlogSection = () => {
                           </div>
                           <div className="flex items-center gap-1">
                             <Clock size={16} />
-                            {post.minutes} Minutes
+                            {post.minutes} Phút
                           </div>
                         </div>
 
@@ -857,7 +883,7 @@ const BlogSection = () => {
                             ))}
                           </div>
                           <div className="text-sm text-gray-400">
-                            {post.words} Words | {post.minutes} Minutes
+                            {post.words} Từ | {post.minutes} Phút
                           </div>
                         </div>
                       </div>
@@ -886,6 +912,7 @@ const BlogSection = () => {
   );
 };
 
+// Thành phần chính điều khiển chuyển đổi giữa các section
 export default function HackerAnimeProfile() {
   const [currentSection, setCurrentSection] = useState(0);
   const [scrollY, setScrollY] = useState(0);
@@ -896,7 +923,7 @@ export default function HackerAnimeProfile() {
       const scrollPosition = window.scrollY;
       setScrollY(scrollPosition);
 
-      // Calculate total scrollable height
+      // Tính tổng chiều cao có thể cuộn
       const totalHeight = document.body.scrollHeight - window.innerHeight;
       setScrollHeight(totalHeight);
 
@@ -911,7 +938,7 @@ export default function HackerAnimeProfile() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Calculate scroll percentage
+  // Tính phần trăm cuộn
   const scrollPercentage =
     scrollHeight > 0 ? Math.min((scrollY / scrollHeight) * 100, 100) : 0;
 
@@ -933,7 +960,7 @@ export default function HackerAnimeProfile() {
         <BlogSection />
       </div>
 
-      {/* Scroll indicator */}
+      {/* Thanh chỉ báo cuộn */}
       <div className="fixed bottom-8 right-8 z-50">
         <div className="w-2 h-16 bg-white/20 rounded-full overflow-hidden">
           <div
