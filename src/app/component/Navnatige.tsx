@@ -2,28 +2,29 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+
 const NavBar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center py-6 bg-gradient-to-b from-black/90 to-transparent backdrop-blur-sm">
-      <div className="flex items-center space-x-8 sm:space-x-16">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center py-4 sm:py-6 bg-gradient-to-b from-black/90 to-transparent backdrop-blur-sm">
+      <div className="w-full max-w-7xl flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-0 sm:space-x-8 lg:space-x-16">
         {/* Logo/Brand */}
         <Link
           href="/"
-          className="text-neon-green text-2xl sm:text-3xl font-bold font-hacker tracking-wider animate-pulse cursor-pointer"
+          className="text-neon-green text-xl sm:text-2xl lg:text-3xl font-bold font-hacker tracking-wider animate-pulse cursor-pointer"
         >
           <Image
-            src="/img/Kai0Kid.jpg" // Đường dẫn đúng đến file logo trong thư mục public
+            src="/img/Kai0Kid.jpg"
             alt="Logo"
-            className="h-10 sm:h-12 w-auto" // Đảm bảo chiều cao và chiều rộng tự điều chỉnh qua CSS
-            width={120} // Cung cấp chiều rộng cụ thể (điều chỉnh theo logo thực tế)
-            height={40} // Chiều cao cụ thể (40px cho màn hình nhỏ)
-            priority // Tải trước logo để tối ưu hóa
+            className="h-8 sm:h-10 lg:h-12 w-auto"
+            width={100}
+            height={32}
+            priority
           />
         </Link>
 
         {/* Main Title with Glitch Effect */}
         <Link href="/" className="relative glitch cursor-pointer">
-          <h1 className="text-5xl sm:text-7xl font-bold text-neon-purple">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-neon-purple">
             kai0kid
             <span className="absolute inset-0 text-neon-green opacity-50 blur-sm animate-glitch-alt">
               kai0kid
@@ -32,7 +33,7 @@ const NavBar = () => {
         </Link>
 
         {/* Navigation Links */}
-        <div className="flex space-x-6 sm:space-x-10 text-neon-green text-base sm:text-lg font-hacker">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-10 text-neon-green text-sm sm:text-base lg:text-lg font-hacker">
           <Link
             href="/write-up"
             className="relative group hover:text-neon-purple transition-all duration-300"
@@ -158,9 +159,53 @@ const NavBar = () => {
         }
 
         /* Responsive Adjustments */
-        @media (max-width: 640px) {
+        @media (max-width: 480px) {
+          .text-3xl {
+            font-size: 1.75rem;
+          }
+          .text-xl {
+            font-size: 1.125rem;
+          }
+          .text-sm {
+            font-size: 0.75rem;
+          }
+          .h-8 {
+            height: 1.75rem;
+          }
+          .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+          .gap-4 {
+            gap: 0.75rem;
+          }
+        }
+
+        @media (min-width: 481px) and (max-width: 640px) {
+          .text-3xl {
+            font-size: 2.25rem;
+          }
+          .text-xl {
+            font-size: 1.25rem;
+          }
+          .text-sm {
+            font-size: 0.875rem;
+          }
+          .h-8 {
+            height: 2rem;
+          }
+          .px-4 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+          }
+          .gap-4 {
+            gap: 1rem;
+          }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
           .text-5xl {
-            font-size: 2.5rem;
+            font-size: 3rem;
           }
           .text-2xl {
             font-size: 1.5rem;
@@ -168,11 +213,47 @@ const NavBar = () => {
           .text-base {
             font-size: 0.875rem;
           }
-          .space-x-8 {
+          .h-10 {
+            height: 2.5rem;
+          }
+          .gap-6 {
+            gap: 1.25rem;
+          }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .text-5xl {
+            font-size: 4rem;
+          }
+          .text-2xl {
+            font-size: 1.75rem;
+          }
+          .text-base {
+            font-size: 1rem;
+          }
+          .h-10 {
+            height: 2.75rem;
+          }
+          .gap-6 {
             gap: 1.5rem;
           }
-          .space-x-6 {
-            gap: 1rem;
+        }
+
+        @media (min-width: 1025px) {
+          .text-7xl {
+            font-size: 5rem;
+          }
+          .text-3xl {
+            font-size: 2rem;
+          }
+          .text-lg {
+            font-size: 1.125rem;
+          }
+          .h-12 {
+            height: 3rem;
+          }
+          .gap-10 {
+            gap: 2rem;
           }
         }
       `}</style>
