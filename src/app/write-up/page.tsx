@@ -11,7 +11,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Image from "next/image";
-import NavBar from "../component/Navnatige"; // Corrected import path
+import NavBar from "../component/Navnatige";
 import HackerFooter from "../component/Footer";
 // Thành phần BlogSection hiển thị danh sách bài viết
 const BlogSection = () => {
@@ -63,7 +63,7 @@ const BlogSection = () => {
                 <div className="text-center mb-8">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-2xl overflow-hidden">
                     <Image
-                      src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=200&fit=crop&crop=face"
+                      src="/img/Kai0Kid.jpg"
                       alt="Hồ sơ"
                       width={200}
                       height={200}
