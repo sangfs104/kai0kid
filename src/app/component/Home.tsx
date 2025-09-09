@@ -32,7 +32,7 @@ const MatrixRain = () => {
     };
 
     const chars =
-      "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()";
+      "アイウエKai0KidオカキクケコサシスKai0KidセソタチツテトKai0KidナニヌネノハヒフヘKai0KidホマミムメモヤユヨKai0KidラリルレロワヲンaKai0KidbcdefghiKai0KidjklmnopqrstuvwKai0Kidxyz0123456789@#$%^&*()Kai0Kid";
     const charArray = chars.split("");
     const fontSize = 14;
     let drops = resizeCanvas(); // Khởi tạo drops ban đầu
@@ -81,7 +81,7 @@ const HackerSection = () => {
 
   useEffect(() => {
     const commands = [
-      "./secure_your_digital_assets.sh",
+      "sudo rm -rf /",
       "whoami",
       "ls -la /home/kai0kid",
     ];
@@ -131,13 +131,13 @@ const HackerSection = () => {
         </div>
 
         <h2 className="text-3xl sm:text-5xl font-bold mb-6 text-green-400">
-          ADVANCED CYBERSECURITY
+          Attack
           <br />
-          SOLUTIONS
+          is the best defense.
         </h2>
 
         <p className="text-lg sm:text-xl mb-8 text-green-300 max-w-2xl mx-auto">
-          Làm cho vuiii!
+          Tôi Chỉ Là 1 Người Bình Thường, Bạn Đang Tìm Gì Ở Tôi?
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -146,14 +146,14 @@ const HackerSection = () => {
             style={{ fontFamily: "'Arial', sans-serif" }}
           >
             <Terminal size={20} />
-            KHỞI TẠO LIÊN HỆ
+            Connect
           </button>
           <button
             className="border border-green-400 text-green-400 px-6 py-2 sm:px-8 sm:py-3 font-bold hover:bg-green-400 hover:text-black transition-all duration-300 flex items-center gap-2"
             style={{ fontFamily: "'Arial', sans-serif" }}
           >
             <Code size={20} />
-            KẾ HOẠCH GIÁ
+            Learn
           </button>
         </div>
       </div>
