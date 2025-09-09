@@ -4,12 +4,13 @@ import {
   Github,
   Terminal,
   Code,
-  Wrench, // Thay Tool bằng Wrench
+  Wrench,
   Link as LinkIcon,
   Folder,
   Zap,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const OthersSection = () => {
   const resources = [
@@ -67,6 +68,7 @@ const OthersSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    <-LINK_GITHUB>
                     <Github
                       className="text-purple-300 hover:text-white cursor-pointer"
                       size={24}
@@ -129,35 +131,35 @@ const OthersSection = () => {
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2 text-2xl font-bold">
                   <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-                    <Wrench size={20} /> {/* Thay Tool bằng Wrench */}
+                    <Wrench size={20} />
                   </div>
                   Các nội dung khác
                 </div>
                 <div className="hidden md:flex items-center gap-8">
-                  <a
+                  <Link
                     href="/"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
                     Trang chủ
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/archive"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
                     Lưu trữ
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/about"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
                     Giới thiệu
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/others"
                     className="text-purple-300 hover:text-white transition-colors font-bold"
                   >
                     Khác
-                  </a>
+                  </Link>
                   <a
                     href="https://github.com/yourusername"
                     target="_blank"

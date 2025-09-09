@@ -4,13 +4,13 @@ import {
   Github,
   Terminal,
   Code,
-  BookOpen,
   User,
   Mail,
   MapPin,
   Link as LinkIcon,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutSection = () => {
   return (
@@ -111,24 +111,24 @@ const AboutSection = () => {
                   Giới thiệu
                 </div>
                 <div className="hidden md:flex items-center gap-8">
-                  <a
+                  <Link
                     href="/"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
                     Trang chủ
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/archive"
                     className="text-purple-300 hover:text-white transition-colors"
                   >
                     Lưu trữ
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/about"
                     className="text-purple-300 hover:text-white transition-colors font-bold"
                   >
                     Giới thiệu
-                  </a>
+                  </Link>
                   <a
                     href="https://github.com/yourusername"
                     target="_blank"
@@ -163,9 +163,9 @@ const AboutSection = () => {
                 cộng đồng hacker.
               </p>
               <p className="text-gray-300 mb-6">
-                "Ad Astra Per Aspera" - Qua những khó khăn để vươn tới các vì
-                sao. Tôi tin rằng không có giới hạn nào không thể vượt qua, chỉ
-                cần bạn có đủ đam mê và sự kiên trì.
+                &quot;Ad Astra Per Aspera&quot; - Qua những khó khăn để vươn tới
+                các vì sao. Tôi tin rằng không có giới hạn nào không thể vượt
+                qua, chỉ cần bạn có đủ đam mê và sự kiên trì.
               </p>
 
               <h3 className="text-2xl font-bold mb-4 text-purple-300">
