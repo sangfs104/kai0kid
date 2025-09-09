@@ -19,6 +19,11 @@ const MatrixRain = () => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d");
 
+    if (!ctx) {
+      console.error("Failed to get 2D context");
+      return;
+    }
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
