@@ -143,11 +143,17 @@ const HackerSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-green-400 text-black px-6 py-2 sm:px-8 sm:py-3 font-bold hover:bg-green-300 transition-all duration-300 flex items-center gap-2">
+          <button
+            className="bg-green-400 text-black px-6 py-2 sm:px-8 sm:py-3 font-bold hover:bg-green-300 transition-all duration-300 flex items-center gap-2"
+            style={{ fontFamily: "'Arial', sans-serif" }}
+          >
             <Terminal size={20} />
             KHỞI TẠO LIÊN HỆ
           </button>
-          <button className="border border-green-400 text-green-400 px-6 py-2 sm:px-8 sm:py-3 font-bold hover:bg-green-400 hover:text-black transition-all duration-300 flex items-center gap-2">
+          <button
+            className="border border-green-400 text-green-400 px-6 py-2 sm:px-8 sm:py-3 font-bold hover:bg-green-400 hover:text-black transition-all duration-300 flex items-center gap-2"
+            style={{ fontFamily: "'Arial', sans-serif" }}
+          >
             <Code size={20} />
             KẾ HOẠCH GIÁ
           </button>
