@@ -8,15 +8,15 @@ import {
   Tag,
   Calendar,
   Clock,
-  Video,
   ExternalLink,
 } from "lucide-react";
+import Image from "next/image"; // Import next/image
 
 const MatrixRain = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d");
 
     canvas.width = window.innerWidth;
@@ -28,7 +28,7 @@ const MatrixRain = () => {
 
     const fontSize = 14;
     const columns = canvas.width / fontSize;
-    const drops = [];
+    const drops: number[] = [];
 
     for (let x = 0; x < columns; x++) {
       drops[x] = 1;
@@ -102,11 +102,33 @@ const HackerSection = () => {
       <MatrixRain />
 
       <div className="relative z-10 text-center px-8">
-        <div className="mb-8">
-          <h1 className="text-6xl font-mono font-bold mt-0 mb-2 text-green-400 glitch">
+        <nav className="absolute top-8 left-0 right-0 z-20 flex justify-center items-center">
+          <div className="text-green-400 font-mono text-xl font-bold">
+            sanghacker
+          </div>
+          <h1 className="text-6xl font-mono font-bold mt-0 mb-2 text-green-400 glitch mx-4">
             kai0kid
           </h1>
+          <div className="hidden md:flex space-x-8 text-green-400 font-mono">
+            <a href="#" className="hover:text-green-300">
+              &lt;ABOUT/&gt;
+            </a>
+            <a href="#" className="hover:text-green-300">
+              &lt;SERVICES/&gt;
+            </a>
+            <a href="#" className="hover:text-green-300">
+              &lt;PRICING/&gt;
+            </a>
+            <a href="#" className="hover:text-green-300">
+              &lt;BLOGS/&gt;
+            </a>
+            <a href="#" className="hover:text-green-300">
+              &lt;CONTACT/&gt;
+            </a>
+          </div>
+        </nav>
 
+        <div className="mb-8 mt-20">
           <div className="border border-green-400 rounded px-4 py-2 inline-block mb-6">
             <span className="text-green-300">$ </span>
             <span className="text-white">{command}</span>
@@ -140,31 +162,6 @@ const HackerSection = () => {
             PRICING PLAN
           </button>
         </div>
-
-        <nav className="absolute top-8 left-0 right-0 z-20">
-          <div className="flex justify-between items-center px-8">
-            <div className="text-green-400 font-mono text-xl font-bold">
-              sanghacker
-            </div>
-            <div className="hidden md:flex space-x-8 text-green-400 font-mono">
-              <a href="#" className="hover:text-green-300">
-                &lt;ABOUT/&gt;
-              </a>
-              <a href="#" className="hover:text-green-300">
-                &lt;SERVICES/&gt;
-              </a>
-              <a href="#" className="hover:text-green-300">
-                &lt;PRICING/&gt;
-              </a>
-              <a href="#" className="hover:text-green-300">
-                &lt;BLOGS/&gt;
-              </a>
-              <a href="#" className="hover:text-green-300">
-                &lt;CONTACT/&gt;
-              </a>
-            </div>
-          </div>
-        </nav>
       </div>
 
       <style jsx>{`
@@ -244,9 +241,11 @@ const BlogSection = () => {
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 sticky top-8">
               <div className="text-center mb-8">
                 <div className="w-32 h-32 mx-auto mb-4 rounded-2xl overflow-hidden">
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=200&fit=crop&crop=face"
                     alt="Profile"
+                    width={200}
+                    height={200}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -388,9 +387,11 @@ const BlogSection = () => {
 
                       <div className="md:w-1/3 relative">
                         <div className="h-48 md:h-full rounded-r-2xl overflow-hidden">
-                          <img
+                          <Image
                             src={post.image}
                             alt={post.title}
+                            width={400}
+                            height={200}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
