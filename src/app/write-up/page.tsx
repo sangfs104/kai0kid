@@ -4,7 +4,6 @@ import {
   Github,
   Terminal,
   Code,
-  BookOpen,
   Tag,
   Calendar,
   Clock,
@@ -116,7 +115,7 @@ const BlogSection = () => {
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <>
