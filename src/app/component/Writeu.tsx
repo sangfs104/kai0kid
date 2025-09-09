@@ -121,7 +121,7 @@ const BlogSection = () => {
                   <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
                     <BookOpen size={20} />
                   </div>
-                  Lê Bá Sang
+                  LBS
                 </div>
                 <div className="hidden md:flex items-center gap-8">
                   <a
