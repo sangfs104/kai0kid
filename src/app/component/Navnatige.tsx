@@ -1,11 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NavBar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   // Variants for hover and click glitch effect
   const linkHoverVariants = {
@@ -41,8 +43,8 @@ const NavBar = () => {
         filter: {
           duration: 0.5,
           repeat: Infinity,
-          repeatType: "loop" as const, // Explicitly type repeatType
-          ease: "easeInOut" as const, // Explicitly type ease
+          repeatType: "loop",
+          ease: "easeInOut",
         },
       },
     },
@@ -57,12 +59,12 @@ const NavBar = () => {
         filter: {
           duration: 1,
           repeat: Infinity,
-          repeatType: "loop" as const, // Explicitly type repeatType
-          ease: "easeInOut" as const, // Explicitly type ease
+          repeatType: "loop",
+          ease: "easeInOut",
         },
         scale: {
           duration: 1,
-          ease: "easeInOut" as const,
+          ease: "easeInOut",
         },
       },
     },
@@ -71,13 +73,27 @@ const NavBar = () => {
       filter: "drop-shadow(0 0 15px #39ff14) drop-shadow(0 0 20px #39ff14)",
       transition: {
         duration: 0.2,
-        ease: "easeOut" as const,
+        ease: "easeOut",
       },
     },
   };
 
+  // Handle link click with loading state
+  const handleLinkClick = (href: string) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      router.push(href);
+      setIsLoading(false);
+    }, 1000); // 1-second delay for loading effect
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center py-3 sm:py-4 md:py-6 bg-gradient-to-b from-black/90 to-transparent backdrop-blur-sm">
+      {isLoading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-60">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="flex flex-wrap items-center justify-center space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-16 xl:space-x-20">
         {/* Navigation Links */}
         <div className="flex flex-wrap justify-center space-x-3 sm:space-x-6 md:space-x-8 lg:space-x-10 xl:space-x-12 text-neon-green text-sm sm:text-base md:text-lg lg:text-xl font-hacker">
@@ -90,6 +106,10 @@ const NavBar = () => {
               whileTap="click"
               animate={pathname === "/" ? "active" : "initial"}
               style={{ color: "#39ff14" }}
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/") handleLinkClick("/");
+              }}
             >
               &lt;HOME/&gt;
               <span
@@ -108,6 +128,10 @@ const NavBar = () => {
               whileTap="click"
               animate={pathname === "/write-up" ? "active" : "initial"}
               style={{ color: "#39ff14" }}
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/write-up") handleLinkClick("/write-up");
+              }}
             >
               &lt;WRITE UP/&gt;
               <span
@@ -128,6 +152,10 @@ const NavBar = () => {
               whileTap="click"
               animate={pathname === "/about" ? "active" : "initial"}
               style={{ color: "#39ff14" }}
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/about") handleLinkClick("/about");
+              }}
             >
               &lt;ABOUT/&gt;
               <span
@@ -148,6 +176,10 @@ const NavBar = () => {
               whileTap="click"
               animate={pathname === "/others" ? "active" : "initial"}
               style={{ color: "#39ff14" }}
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/others") handleLinkClick("/others");
+              }}
             >
               &lt;OTHERS/&gt;
               <span
@@ -171,6 +203,24 @@ const NavBar = () => {
 
         .text-neon-green {
           color: #39ff14;
+        }
+
+        .loader {
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid #39ff14;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
       `}</style>
     </nav>
