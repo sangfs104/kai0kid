@@ -68,7 +68,6 @@ const OthersSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <-LINK_GITHUB>
                     <Github
                       className="text-purple-300 hover:text-white cursor-pointer"
                       size={24}
