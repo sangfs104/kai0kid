@@ -4,7 +4,7 @@ import {
   Github,
   Terminal,
   Code,
-  Tool,
+  Wrench, // Thay Tool bằng Wrench
   Link as LinkIcon,
   Folder,
   Zap,
@@ -129,7 +129,7 @@ const OthersSection = () => {
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2 text-2xl font-bold">
                   <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-                    <Tool size={20} />
+                    <Wrench size={20} /> {/* Thay Tool bằng Wrench */}
                   </div>
                   Các nội dung khác
                 </div>
