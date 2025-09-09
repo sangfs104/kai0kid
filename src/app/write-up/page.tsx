@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import NavBar from "../component/Navnatige"; // Corrected import path
-
+import HackerFooter from "../component/Footer";
 // Thành phần BlogSection hiển thị danh sách bài viết
 const BlogSection = () => {
   const posts = [
@@ -191,6 +191,7 @@ const BlogSection = () => {
           </div>
         </div>
       </div>
+      <HackerFooter />
     </>
   );
 };

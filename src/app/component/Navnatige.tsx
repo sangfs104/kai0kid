@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-
+import Image from "next/image";
 const NavBar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center py-6 bg-gradient-to-b from-black/90 to-transparent backdrop-blur-sm">
@@ -11,7 +11,14 @@ const NavBar = () => {
           href="/"
           className="text-neon-green text-2xl sm:text-3xl font-bold font-hacker tracking-wider animate-pulse cursor-pointer"
         >
-          sanghacker
+          <Image
+            src="/img/Kai0Kid.jpg" // Đường dẫn đúng đến file logo trong thư mục public
+            alt="Logo"
+            className="h-10 sm:h-12 w-auto" // Đảm bảo chiều cao và chiều rộng tự điều chỉnh qua CSS
+            width={120} // Cung cấp chiều rộng cụ thể (điều chỉnh theo logo thực tế)
+            height={40} // Chiều cao cụ thể (40px cho màn hình nhỏ)
+            priority // Tải trước logo để tối ưu hóa
+          />
         </Link>
 
         {/* Main Title with Glitch Effect */}
