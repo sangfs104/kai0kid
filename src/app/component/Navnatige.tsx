@@ -11,7 +11,7 @@ const NavBar = () => {
         {/* Navigation Links */}
         <div className="flex flex-wrap justify-center space-x-3 sm:space-x-6 md:space-x-8 lg:space-x-10 xl:space-x-12 text-neon-green text-sm sm:text-base md:text-lg lg:text-xl font-hacker">
           <Link
-            href="/write-up"
+            href="/"
             className="relative group hover:text-neon-purple transition-all duration-300"
           >
             &lt;HOME/&gt;
