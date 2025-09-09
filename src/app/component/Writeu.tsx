@@ -68,7 +68,7 @@ const BlogSection = () => {
                   />
                 </div>
                 <h2 className="text-2xl font-bold mb-2">Kai0Kid</h2>
-                <p className="text-purple-300 mb-4">Hello, nice to meet you.</p>
+                <p className="text-purple-300 mb-4">Hello , nice to meet you.</p>
                 <div className="flex justify-center gap-4">
                   <Github
                     className="text-purple-300 hover:text-white cursor-pointer"
