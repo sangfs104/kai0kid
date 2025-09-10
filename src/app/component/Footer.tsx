@@ -206,12 +206,17 @@ const HackerFooter = () => {
         <div className="border-t border-green-500/30 pt-6">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             {/* Copyright */}
-            <div className="text-green-600 text-sm">
+            {/* <div className="text-green-600 text-sm">
               © 2025 Kai0Kid. All rights reserved. | Built with{" "}
               <span class="font-semibold">React</span> &{" "}
               <span class="font-semibold">Tailwind</span>
-            </div>
+            </div> */}
 
+            <div className="text-green-600 text-sm">
+              © 2025 Kai0Kid. All rights reserved. | Built with{" "}
+              <span className="font-semibold">React</span> &{" "}
+              <span className="font-semibold">Tailwind</span>
+            </div>
             {/* Terminal Command */}
             <div className="bg-gray-900/60 border border-green-500/30 rounded px-4 py-2 text-sm">
               <span className="text-green-500">root@Kali:~$</span>
