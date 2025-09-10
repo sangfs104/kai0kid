@@ -207,7 +207,9 @@ const HackerFooter = () => {
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             {/* Copyright */}
             <div className="text-green-600 text-sm">
-              © 2025 Kai0Kid. All rights reserved. | Built with <span class="font-semibold">React</span> & <span class="font-semibold">Tailwind</span>
+              © 2025 Kai0Kid. All rights reserved. | Built with{" "}
+              <span class="font-semibold">React</span> &{" "}
+              <span class="font-semibold">Tailwind</span>
             </div>
 
             {/* Terminal Command */}
