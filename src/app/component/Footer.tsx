@@ -53,10 +53,10 @@ const HackerFooter = () => {
   }, []);
 
   const socialLinks = [
-    { icon: Terminal, label: "GitHub", handle: "@cyberghost" },
-    { icon: Shield, label: "Discord", handle: "CyberGhost#1337" },
-    { icon: Globe, label: "Website", handle: "cyberghost.dev" },
-    { icon: Database, label: "Email", handle: "contact@encrypted.net" },
+    { icon: Terminal, label: "GitHub", handle: "Kai0Kid" },
+    { icon: Shield, label: "Discord", handle: "Kai0Kid" },
+    { icon: Globe, label: "Website", handle: "127.0.0.1" },
+    { icon: Database, label: "Email", handle: "Kai0Kid08@gmail.com" },
   ];
 
   const quickStats = [
@@ -207,13 +207,12 @@ const HackerFooter = () => {
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             {/* Copyright */}
             <div className="text-green-600 text-sm">
-              © 2024 CyberGhost. All rights reserved. | Built with React &
-              Tailwind
+              © 2025 Kai0Kid. All rights reserved. | Built with <span class="font-semibold">React</span> & <span class="font-semibold">Tailwind</span>
             </div>
 
             {/* Terminal Command */}
             <div className="bg-gray-900/60 border border-green-500/30 rounded px-4 py-2 text-sm">
-              <span className="text-green-500">root@darkweb:~$</span>
+              <span className="text-green-500">root@Kali:~$</span>
               <span className="text-green-400 ml-2">
                 stay_anonymous && keep_hacking()
               </span>

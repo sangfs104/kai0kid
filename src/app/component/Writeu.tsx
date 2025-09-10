@@ -67,8 +67,8 @@ const BlogSection = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h2 className="text-2xl font-bold mb-2">WhitePaper 白花</h2>
-                <p className="text-purple-300 mb-4">Ad Astra Per Aspera.</p>
+                <h2 className="text-2xl font-bold mb-2">Kai0Kid</h2>
+                <p className="text-purple-300 mb-4">Hello , nice to meet you.</p>
                 <div className="flex justify-center gap-4">
                   <Github
                     className="text-purple-300 hover:text-white cursor-pointer"
@@ -121,7 +121,7 @@ const BlogSection = () => {
                   <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
                     <BookOpen size={20} />
                   </div>
-                  Lê Bá Sang
+                  LBS
                 </div>
                 <div className="hidden md:flex items-center gap-8">
                   <a
